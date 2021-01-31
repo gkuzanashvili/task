@@ -1,0 +1,42 @@
+<p-table [value]="accounts">
+  <ng-template pTemplate="caption">
+    <div class="p-grid p-jc-between">
+      <div class="p-col-2">
+        <h2 class="p-m-0">ანგარიშები</h2>
+      </div>
+      <div class="p-col-1">
+        <button pButton pRipple icon="pi pi-plus" class="p-button-outlined" (click)="openNewAccount()"></button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ანგარიშის ნომერი</th>
+      <th>მომხმარებლის ნომერი</th>
+      <th>ტიპი</th>
+      <th>ვალუტა</th>
+      <th>სტატუსი</th>
+      <th style="width:8rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-account let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="account">
+      <td>{{account.accountNumber}}</td>
+      <td>{{account.clientNumber}}</td>
+      <td>{{ getTypeLabel(account.accountType)}}</td>
+      <td>{{account.currency}}</td>
+      <td>{{getStatusLabel(account.accountStatus)}}</td>
+      <td style="text-align:center">
+        <button pButton pRipple icon="pi pi-pencil"
+                (click)="onEdit(account)" class="p-button-outlined p-button-success p-mr-2"></button>
+        <button pButton pRipple icon="pi pi-trash"
+                (click)="deleteAccount(account)" class="p-button-outlined p-button-danger"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="newAccountsModal" [style]="{width: '600px'}" header="ანგარიში" [modal]="true"
+          styleClass="p-fluid">
+  <app-account-view (newAccount)="onSave($event)"></app-account-view>
+</p-dialog>

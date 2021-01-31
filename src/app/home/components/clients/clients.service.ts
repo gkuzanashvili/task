@@ -10,7 +10,14 @@ export class ClientsService extends DataService{
     return this.sendGetRequest('clients');
   }
 
-  deleteClient(id) {
+  deleteClient(id): Promise<any> {
     return this.sendDeleteRequest('clients', id);
   }
+  updateClient(client): Promise<any> {
+    return this.sendPutRequest('clients', client);
+  }
+  saveClient(client): Promise<any> {
+    return this.sendPostRequest('clients', client);
+  }
+
 }

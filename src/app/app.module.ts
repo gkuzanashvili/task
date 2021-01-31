@@ -7,14 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from './app.routes';
-import {PanelModule} from 'primeng/panel';
-import {ButtonModule} from 'primeng/button';
 import { ClientsComponent } from './home/components/clients/clients.component';
-import { AccountComponent } from './home/components/account/account.component';
+import { AccountComponent } from './home/components/clients/account-modal/account.component';
 import {PrimeNgModule} from './primeng-module';
-import {ConfirmationService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {GenderPipe} from './pipes/gender-pipe';
-
+import { ClientModalComponent } from './home/components/clients/client-modal/client-modal.component';
+import {InputModule} from './shared-ui/input/input.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {AddressModule} from './shared-ui/address/address.module';
+import { AccountViewComponent } from './home/components/clients/account-modal/account-view/account-view.component';
+import {ValidatorModule} from './shared-ui/validator/validator.module';
+import {ExactLengthValidator} from './validators/exact-length-validator.service';
+import {PhoneNumberValidator} from './validators/phone-number-validator';
+import {GeoEnRegexValidator} from './validators/geo-en-regex-validator';
 
 @NgModule({
   declarations: [
@@ -22,17 +28,28 @@ import {GenderPipe} from './pipes/gender-pipe';
     HomeComponent,
     ClientsComponent,
     AccountComponent,
-    GenderPipe
+    GenderPipe,
+    ClientModalComponent,
+    AccountViewComponent,
+
   ],
-  imports: [
-    HttpClientModule,
-    RouterModule.forRoot(APP_ROUTES),
-    BrowserModule,
-    BrowserAnimationsModule,
-    PrimeNgModule
-  ],
+    imports: [
+        HttpClientModule,
+        RouterModule.forRoot(APP_ROUTES),
+        BrowserModule,
+        BrowserAnimationsModule,
+        PrimeNgModule,
+        InputModule,
+        ReactiveFormsModule,
+        AddressModule,
+        ValidatorModule
+    ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
+    MessageService,
+    ExactLengthValidator,
+    PhoneNumberValidator,
+    GeoEnRegexValidator
   ],
   bootstrap: [AppComponent]
 })

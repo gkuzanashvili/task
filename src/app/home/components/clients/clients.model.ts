@@ -1,4 +1,4 @@
-import {AccountModel} from '../account/account.model';
+import {AccountModel} from './account-modal/account.model';
 
 export class ClientModel {
   id: number;
@@ -8,9 +8,9 @@ export class ClientModel {
   gender: string;
   phoneNumber: string;
   image: string;
-  legalAddress: AddressModel;
-  actualAddress: AddressModel;
-  account: Array<AccountModel>;
+  legalAddress = new AddressModel();
+  actualAddress = new AddressModel();
+  accounts = new Array<AccountModel>();
   uploadedImage: string;
 
 }

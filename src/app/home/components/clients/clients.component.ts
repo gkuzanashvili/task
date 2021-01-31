@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientModel} from './clients.model';
 import {ClientsService} from './clients.service';
-import {ConfirmationService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {ClientModalComponent} from './client-modal/client-modal.component';
+import {AccountComponent} from './account-modal/account.component';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-clients',
@@ -11,52 +14,85 @@ import {ConfirmationService} from 'primeng/api';
   providers: [ClientsService]
 })
 export class ClientsComponent implements OnInit {
-  productDialog: boolean;
+  clientModal: boolean;
+  accountsModal: boolean;
 
   clients: ClientModel[];
 
-  // product: Product;
+  client = new ClientModel();
+
+  showSearchPanel = false;
 
   // selectedProducts: Product[];
 
   submitted: boolean;
+  clientSearchForm: FormGroup;
 
-  statuses: any[];
+  // statuses: any[];
+
+  @ViewChild(ClientModalComponent) clientModalComponent: ClientModalComponent;
+ // @ViewChild(AccountComponent) accountComponent: AccountComponent;
+
 
   constructor(
     private router: Router,
     public clientService: ClientsService,
+    public formBuilder: FormBuilder,
+    public messageService: MessageService,
     private confirmationService: ConfirmationService ) { }
 
   ngOnInit(): void {
     this.clients = [];
-    this.clientService.getClients().subscribe(clients => {
-      this.clients = clients;
-      console.log(this.clients, 'clinetsjd');
-    });
-    this.statuses = [
-      {label: 'INSTOCK', value: 'instock'},
-      {label: 'LOWSTOCK', value: 'lowstock'},
-      {label: 'OUTOFSTOCK', value: 'outofstock'}
-    ];
+    this.getClients();
+    // this.statuses = [
+    //   {label: 'INSTOCK', value: 'instock'},
+    //   {label: 'LOWSTOCK', value: 'lowstock'},
+    //   {label: 'OUTOFSTOCK', value: 'outofstock'}
+    // ];
   }
 
   // ngOnDestroy() {
   //   this.subscription.unsubscribe();
   // }
-  openNew() {
 
-    this.router.navigate(['/clients']).then();
-    this.productDialog = true;
-    // this.product = {};
+  getClients() {
+    this.clientService.getClients().subscribe(clients => {
+      this.clients = clients;
+      console.log(this.clients, 'clinetsjd');
+    });
+  }
+
+  openNew() {
+    this.clientModal = true;
+    this.client = new ClientModel();
+    this.clientModalComponent.initForm(this.client);
     // this.submitted = false;
   }
 
+  onSearch() {
+    this.showSearchPanel = !this.showSearchPanel;
+    this.clientSearchForm = this.formBuilder.group({
+        pin: new FormControl(''),
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        phoneNumber:  new FormControl('')
+      });
 
+  }
+  searchResult() {
 
-  editProduct(client: ClientModel) {
-    // this.product = {...product};
-    // this.productDialog = true;
+  }
+  showAccounts(client: ClientModel) {
+    console.log(client.accounts);
+    this.client = {...client};
+    this.accountsModal = ! this.accountsModal;
+    // this.accountComponent.initForm(client);
+  }
+
+  editClient(client: ClientModel) {
+     this.client = {...client};
+     this.clientModalComponent.initForm(this.client);
+     this.clientModal = true;
   }
 
   deleteClient(client: ClientModel) {
@@ -67,73 +103,51 @@ export class ClientsComponent implements OnInit {
       rejectLabel: 'არა',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.clientService.deleteClient(client.id).subscribe(res => {
-          console.log(res);
+        this.clientService.deleteClient(client.id).then(() => {
           this.clients = this.clients.filter(val => val.id !== client.id);
+          this.client = new ClientModel();
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'მომხმარებელი წაიშალა', life: 3000});
         });
-        // this.product = {};
-        // this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
       }
     });
   }
 
-  hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
+  saveClient(client: ClientModel) {
+    this.client = client;
+    if (this.client.id) {
+      this.clientService.updateClient(this.client).then((res) => {
+        console.log(res, 'update');
+        // this.getClients();
+        this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მონაცემები განახლდა', life: 3000});
+      });
+
+    } else {
+      console.log('save', this.client);
+      this.client.id = this.createId();
+      this.clientService.saveClient(this.client).then(() => {
+        this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მომხმარებელი დაემატა', life: 3000});
+      });
+    }
+    this.clientModal = false;
+    this.getClients();
+    this.client = new ClientModel();
   }
 
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    //   if (this.product.id) {
-    //     this.products[this.findIndexById(this.product.id)] = this.product;
-    //     this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
-    //   }
-    //   else {
-    //     this.product.id = this.createId();
-    //     this.product.image = 'product-placeholder.svg';
-    //     this.products.push(this.product);
-    //     this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-    //   }
-    //
-    //   this.products = [...this.products];
-    //   this.productDialog = false;
-    //   this.product = {};
-    // }
-  }
-
-  // findIndexById(id: string): number {
-  //   let index = -1;
-  //   for (let i = 0; i < this.products.length; i++) {
-  //     if (this.products[i].id === id) {
-  //       index = i;
-  //       break;
-  //     }
-  //   }
+  // private findIndexById(id: number): number {
+  //    let index = -1;
+  //    for (let i = 0; i < this.clients.length; i++) {
+  //      if ( this.clients[i].id === id ) {
+  //        index = i;
+  //        break;
+  //      }
+  //    }
   //
-  //   return index;
-  // }
-
-  // createId(): string {
-  //   let id = '';
-  //   var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  //   for ( var i = 0; i < 5; i++ ) {
-  //     id += chars.charAt(Math.floor(Math.random() * chars.length));
-  //   }
-  //   return id;
-  // }
+  //    return index;
+  //  }
 
 
-
-// constructor( private dataService: DataService) { }
-  //
-  // ngOnInit(): void {
-  //   this.dataService.sendGetRequest().subscribe(res => {
-  //     console.log(res);
-  //   });
-  // }
-  saveClient() {
-    this.router.navigate(['/home']).then();
+  createId(): number {
+    const ids = this.clients.map((item) => item.id);
+    return Math.max(...ids) + 1;
   }
 }

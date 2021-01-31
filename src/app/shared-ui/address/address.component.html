@@ -1,0 +1,28 @@
+<div class="p-inputgroup">
+  <div class="p-grid" [formGroup]="formGroup">
+    <div class="p-col-12 p-text-bold" >
+      <label>{{label}}</label>
+    </div>
+    <div class="p-col-6">
+      <app-input label="ქვეყანა"
+                 [checkValidity]="checkValidity"
+                 [errors]="formGroup.get('country').errors"
+                 formControlName="country"
+      ></app-input>
+    </div>
+    <div class="p-col-6">
+      <app-input label="ქალაქი"
+                 [checkValidity]="checkValidity"
+                 [errors]="formGroup.get('city').errors"
+                 formControlName="city"
+      ></app-input>
+    </div>
+    <div class="p-col-12">
+      <app-input label="მისამართი"
+                 [checkValidity]="checkValidity"
+                 [errors]="formGroup.get('address').errors"
+                 formControlName="address"
+      ></app-input>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,15 @@ import {ButtonModule} from 'primeng/button';
 import {ToolbarModule} from 'primeng/toolbar';
 import {RippleModule} from 'primeng/ripple';
 import {TableModule} from 'primeng/table';
-import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ToastModule} from 'primeng/toast';
+import {DropdownModule} from 'primeng/dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 
@@ -18,10 +23,15 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     ToolbarModule,
     RippleModule,
     TableModule,
-    InputTextModule,
     FormsModule,
     DialogModule,
     ConfirmDialogModule,
+    SelectButtonModule,
+    FileUploadModule,
+    ToastModule,
+    DropdownModule,
+    MultiSelectModule,
+    InputNumberModule
   ],
   exports: [
     PanelModule,
@@ -29,10 +39,15 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     ToolbarModule,
     RippleModule,
     TableModule,
-    InputTextModule,
     FormsModule,
     DialogModule,
     ConfirmDialogModule,
+    SelectButtonModule,
+    FileUploadModule,
+    ToastModule,
+    DropdownModule,
+    MultiSelectModule,
+    InputNumberModule
   ]
 })
 

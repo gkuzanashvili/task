@@ -1,0 +1,72 @@
+<div class="p-grid" [formGroup]="clientForm">
+  <div class="p-col-3">
+        <div class="p-grid">
+          <div class="p-col-12">
+            <img src="{{client.image}}" width="140" height="180" class="p-shadow-4" />
+          </div>
+          <div class="p-col-12">
+            <p-fileUpload  chooseLabel="ატვირთვა"
+                           [auto]="true"
+                           mode="basic"
+                           accept="image/*"
+                           maxFileSize="1000000"
+                           customUpload="true"
+                           (onError)="uploadErr($event)"
+                           (uploadHandler)="onUpload($event)">
+            </p-fileUpload>
+          </div>
+        </div>
+      </div>
+  <div class="p-col-8">
+    <div class="p-col-12">
+      <app-input label="სახელი"
+                 [checkValidity]="submitted"
+                 [errors]="clientForm.get('firstName').errors"
+                 formControlName="firstName"
+      ></app-input>
+    </div>
+    <div class="p-col-12">
+      <app-input label="გვარი"
+                 [checkValidity]="submitted"
+                 [errors]="clientForm.get('firstName').errors"
+                 formControlName="lastName"
+      ></app-input>
+    </div>
+    <div class="p-col-12">
+      <p-selectButton [options]="gender" optionLabel="label" optionValue="value" formControlName="gender">
+      </p-selectButton>
+    </div>
+    <div class="p-col-12">
+      <app-input [icon]="'pi pi-id-card'"
+                 label="პირადი ნომერი"
+                 [inputType]="'number'"
+                 [checkValidity]="submitted"
+                 [errors]="clientForm.get('pin').errors"
+                 formControlName="pin"
+      ></app-input>
+    </div>
+    <div class="p-col-12">
+      <app-input [icon]="'pi pi-mobile'"
+                 label="ტელეფონი"
+                 [inputType]="'number'"
+                 [checkValidity]="submitted"
+                 [errors]="clientForm.get('phoneNumber').errors"
+                 formControlName="phoneNumber"
+      ></app-input>
+    </div>
+
+    <app-address [formGroup]="legalAddress" [checkValidity]="submitted" label="იურიდიული მისამართი" ></app-address>
+    <app-address [formGroup]="actualAddress" [checkValidity]="submitted" label="საცხოვრებელი მისამართი"  ></app-address>
+
+  </div>
+  <div class="p-col-12">
+    <div class="p-grid p-jc-end">
+      <div class="p-col-4">
+        <button pButton pRipple label="შენახვა" icon="pi pi-check" class="p-button" (click)="onSave()"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -15,12 +15,21 @@ export abstract class DataService {
     return this.httpClient.get( this.url + param, {responseType: 'json'});
   }
 
-  public sendDeleteRequest(param: string, id: number): Observable<any> {
+  public sendDeleteRequest(param: string, id: number): Promise<any>{
     const delUrl = `${this.url + param}/${id}`;
-    return this.httpClient.delete(delUrl);
-      // .pipe(
-      //   catchError( this.handleError(''))
-      // );
+    return this.httpClient.delete(delUrl)
+      .pipe(
+        catchError( this.handleError)
+      ).toPromise();
+  }
+
+  public sendPutRequest(param, data): Promise<any> {
+    const url = `${this.url + param}/${data.id}`;
+    return  this.httpClient.put(url, data, {responseType: 'json'} ).toPromise();
+  }
+  public sendPostRequest(param, data): Promise<any> {
+    const url = `${this.url + param}`;
+    return  this.httpClient.post(url, data, {responseType: 'json'}).toPromise();
   }
 
   private handleError(error: HttpErrorResponse) {

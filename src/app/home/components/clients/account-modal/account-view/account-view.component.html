@@ -1,0 +1,58 @@
+<div class="p-grid" [formGroup]="accountForm">
+  <div class="p-col-4">
+    <p-dropdown [options]="accountService.currencies"
+                placeholder="ვალუტა"
+                optionLabel="label" optionValue="value"
+                formControlName="currency"
+                [ngClass]="submitted && !accountForm.get('currency').valid ? 'ng-invalid ng-dirty' :''"
+                [style]="{'width':'100%'}"></p-dropdown>
+    <app-validator [checkValidity]="submitted"
+                   [errors]="accountForm.get('currency').errors"></app-validator>
+  </div>
+  <div class="p-col-4">
+    <p-dropdown [options]="accountService.types"
+                placeholder="ტიპი"
+                optionLabel="label"
+                optionValue="value"
+                formControlName="accountType"
+                [ngClass]="submitted && !accountForm.get('currency').valid ? 'ng-invalid ng-dirty' :''"
+                [style]="{'width':'100%'}"></p-dropdown>
+    <app-validator [checkValidity]="submitted"
+                   [errors]="accountForm.get('accountType').errors"></app-validator>
+  </div>
+  <div class="p-col-4">
+    <p-dropdown [options]="accountService.statuses"
+                placeholder="სტატუსი"
+                optionLabel="label"
+                optionValue="value"
+                formControlName="accountStatus"
+                [ngClass]="submitted && !accountForm.get('currency').valid ? 'ng-invalid ng-dirty' :''"
+                [style]="{'width':'100%'}"></p-dropdown>
+    <app-validator [checkValidity]="submitted"
+                   [errors]="accountForm.get('accountStatus').errors"></app-validator>
+  </div>
+  <div class="p-col-12">
+    <app-input label="ანგარიშის ნომერი"
+               formControlName="accountNumber"
+               inputType="number"
+               [checkValidity]="submitted"
+               [errors]="accountForm.get('accountNumber').errors"
+    ></app-input>
+
+  </div>
+  <div class="p-col-12">
+    <app-input label="კლიენტის კოდი"
+               inputType="number"
+               [checkValidity]="submitted"
+               [errors]="accountForm.get('clientNumber').errors"
+               formControlName="clientNumber"></app-input>
+  </div>
+  <div class="p-col-12">
+    <div class="p-grid p-jc-end">
+      <div class="p-col-4">
+        <button pButton pRipple label="შენახვა" icon="pi pi-check" class="p-button" (click)="onSave()"></button>
+      </div>
+    </div>
+  </div>
+</div>
+

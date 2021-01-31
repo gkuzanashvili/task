@@ -4,6 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class GenderPipe implements PipeTransform {
   transform( gender: string): string {
-     return !gender ? '' : gender === 'M' ? 'კაცი' : gender === 'F' ? 'ქალი' : '';
+     return !gender ? '' : gender === 'M' ? 'მამრობითი' : gender === 'F' ? 'მდედრობითი' : '';
   }
 }
