@@ -1,9 +1,9 @@
 <p-toast></p-toast>
 
 <div class="card">
-  <p-table #dt [value]="clients" [rows]="10" [paginator]="true" [globalFilterFields]="['firstName','lastName','pin','phoneNumber']"
+  <p-table #dt [value]="clients" [rows]="5" [paginator]="true"
+           [globalFilterFields]="['firstName','lastName','pin','phoneNumber']"
            [rowHover]="true" dataKey="id">
-
     <ng-template pTemplate="caption">
             <div class="p-grid p-jc-between">
               <div class="p-col-2">
@@ -87,7 +87,7 @@
   <app-client-modal (newClient)="saveClient($event)"></app-client-modal>
 </p-dialog>
 
-<div *ngIf="accountsModal" class="card">
+<div *ngIf="showAccountsTable" class="card">
   <app-accounts [client]="client"></app-accounts>
 </div>
 

@@ -1,32 +1,118 @@
 {
   "clients": [
     {
-      "id": 4,
+      "id": 1,
       "image": null,
-      "pin": "2332",
-      "firstName": "და",
-      "lastName": "საა",
-      "phoneNumber": "42424",
+      "pin": "12312312312",
+      "firstName": "nino",
+      "lastName": "teeee",
+      "phoneNumber": "567567567",
       "gender": "F",
       "legalAddress": {
-        "country": "ირანი",
-        "city": "თეირანი",
-        "address": "dfsfsf"
+        "country": "gggg",
+        "city": "tttt",
+        "address": "jjjjjj"
       },
       "actualAddress": {
-        "country": "ამერიკა",
-        "city": "ვაშინგტონი",
-        "address": "გაფგგ"
+        "country": "gggg",
+        "city": "tttt",
+        "address": "jjjjjjjjjjjjjjjjjjjj"
+      }
+    },
+    {
+      "id": 3,
+      "image": null,
+      "pin": "12312312312",
+      "firstName": "ffd",
+      "lastName": "ff",
+      "phoneNumber": "523123123",
+      "gender": "M",
+      "legalAddress": {
+        "country": "fs",
+        "city": "sf",
+        "address": "s"
       },
-      "accounts": [
-        {
-          "accountNumber": "23424",
-          "clientNumber": "24234",
-          "currency": "EUR",
-          "accountStatus": "A",
-          "accountType": 1
-        }
-      ]
+      "actualAddress": {
+        "country": "s",
+        "city": "df",
+        "address": "ds"
+      }
+    },
+    {
+      "id": 4,
+      "image": null,
+      "pin": "23423423445",
+      "firstName": "rr",
+      "lastName": "ee",
+      "phoneNumber": "534234345",
+      "gender": "F",
+      "legalAddress": {
+        "country": "c",
+        "city": "f",
+        "address": "x"
+      },
+      "actualAddress": {
+        "country": "v",
+        "city": "f",
+        "address": "x"
+      }
+    },
+    {
+      "id": 5,
+      "image": "",
+      "pin": "23231234123",
+      "firstName": "erer",
+      "lastName": "err",
+      "phoneNumber": "534234567",
+      "gender": "F",
+      "legalAddress": {
+        "country": "b",
+        "city": "gf",
+        "address": "f"
+      },
+      "actualAddress": {
+        "country": "f",
+        "city": "g",
+        "address": "f"
+      }
+    },
+    {
+      "id": 6,
+      "image": "",
+      "pin": "12345678998",
+      "firstName": "ew",
+      "lastName": "ew",
+      "phoneNumber": "567890123",
+      "gender": "F",
+      "legalAddress": {
+        "country": "gg",
+        "city": "dg",
+        "address": "dg"
+      },
+      "actualAddress": {
+        "country": "dg",
+        "city": "g",
+        "address": "f"
+      }
+    },
+    {
+      "id": 7,
+      "image": "",
+      "pin": "12341234123",
+      "firstName": "ere",
+      "lastName": "rer",
+      "phoneNumber": "523345345",
+      "gender": "",
+      "legalAddress": {
+        "country": "fgs",
+        "city": "dfg",
+        "address": "dg"
+      },
+      "actualAddress": {
+        "country": "dg",
+        "city": "dg",
+        "address": "dg"
+      }
     }
   ]
 }

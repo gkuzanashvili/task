@@ -15,7 +15,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ClientsComponent implements OnInit {
   clientModal: boolean;
-  accountsModal: boolean;
+
+  showAccountsTable: boolean;
 
   clients: ClientModel[];
 
@@ -26,6 +27,7 @@ export class ClientsComponent implements OnInit {
   // selectedProducts: Product[];
 
   submitted: boolean;
+
   clientSearchForm: FormGroup;
 
   // statuses: any[];
@@ -71,6 +73,7 @@ export class ClientsComponent implements OnInit {
 
   onSearch() {
     this.showSearchPanel = !this.showSearchPanel;
+    if ( !this.showSearchPanel) {this.getClients(); }
     this.clientSearchForm = this.formBuilder.group({
         pin: new FormControl(''),
         firstName: new FormControl(''),
@@ -80,13 +83,20 @@ export class ClientsComponent implements OnInit {
 
   }
   searchResult() {
-
+    if (this.clientSearchForm.value) {
+      this.clients = this.clients.filter(c =>
+        c.pin === this.clientSearchForm.get('pin').value &&
+        c.firstName === this.clientSearchForm.get('firstName').value &&
+        c.lastName === this.clientSearchForm.get('lastName').value &&
+        c.phoneNumber === this.clientSearchForm.get('phoneNumber').value
+      );
+    }
   }
   showAccounts(client: ClientModel) {
-    console.log(client.accounts);
+    console.log(client.accounts, 'acct');
     this.client = {...client};
-    this.accountsModal = ! this.accountsModal;
-    // this.accountComponent.initForm(client);
+    this.showAccountsTable = !this.showAccountsTable;
+    this.getClients();
   }
 
   editClient(client: ClientModel) {
@@ -106,6 +116,7 @@ export class ClientsComponent implements OnInit {
         this.clientService.deleteClient(client.id).then(() => {
           this.clients = this.clients.filter(val => val.id !== client.id);
           this.client = new ClientModel();
+          this.showAccountsTable = false;
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'მომხმარებელი წაიშალა', life: 3000});
         });
       }
@@ -117,7 +128,7 @@ export class ClientsComponent implements OnInit {
     if (this.client.id) {
       this.clientService.updateClient(this.client).then((res) => {
         console.log(res, 'update');
-        // this.getClients();
+        this.getClients();
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მონაცემები განახლდა', life: 3000});
       });
 
@@ -125,11 +136,12 @@ export class ClientsComponent implements OnInit {
       console.log('save', this.client);
       this.client.id = this.createId();
       this.clientService.saveClient(this.client).then(() => {
+        this.getClients();
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მომხმარებელი დაემატა', life: 3000});
       });
     }
     this.clientModal = false;
-    this.getClients();
+    // this.getClients();
     this.client = new ClientModel();
   }
 

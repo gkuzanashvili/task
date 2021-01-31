@@ -34,7 +34,9 @@ export class AccountComponent implements OnInit{
   }
   openNewAccount() {
       this.newAccountsModal = true;
-      this.accountComponent.initForm(new AccountModel());
+      const account = new AccountModel();
+      account.clientNumber = this.client.pin;
+      this.accountComponent.initForm(account);
   }
   onEdit(account: AccountModel) {
     this.accountComponent.initForm(account);

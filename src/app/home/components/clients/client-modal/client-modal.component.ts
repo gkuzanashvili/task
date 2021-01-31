@@ -38,7 +38,8 @@ export class ClientModalComponent implements OnInit {
 
   initForm(client: ClientModel) {
     this.submitted = false;
-    this.client = client;
+    // this.clare();
+    this.client = {...client};
     this.clientForm = this.formBuilder.group({
       id: new FormControl(this.client.id),
       image: new FormControl(this.client.image),

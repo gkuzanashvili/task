@@ -1,12 +1,13 @@
 <div class="p-field">
+  <label for="{{label}}">{{label}}</label>
   <div class="p-inputgroup">
     <span *ngIf="icon" class="p-inputgroup-addon"><i class="{{icon}}"></i></span>
     <input
            type="{{inputType}}"
+           id="{{label}}"
            pInputText
            [value]="value"
            [ngClass]="checkValidity && errors ? 'ng-invalid ng-dirty' :''"
-           placeholder="{{label}}"
            [disabled]="isDisabled"
            (input)="changed($event.target.value)"
            (blur)="touched()"

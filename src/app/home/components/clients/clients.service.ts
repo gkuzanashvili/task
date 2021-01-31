@@ -10,6 +10,10 @@ export class ClientsService extends DataService{
     return this.sendGetRequest('clients');
   }
 
+  getClient(id): Promise<any>{
+    return this.sendGetRequestById('clients', id);
+  }
+
   deleteClient(id): Promise<any> {
     return this.sendDeleteRequest('clients', id);
   }
