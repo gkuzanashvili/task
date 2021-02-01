@@ -8,13 +8,11 @@ import {AccountStatusType, AccountTypeModel, CurrencyModel} from './account.mode
 export class AccountService extends DataService{
 
 
-  public statuses: AccountStatusType[] =  [{label: 'აქტიური', value: 'A'}, {label: 'დახურული', value: 'C'}];
+  public statuses: AccountStatusType[];
 
-  public types: AccountTypeModel[] = [{label: 'მიმდინარე', value: 1}, {label: 'შემნახველი', value: 2}, {label: 'დაგროვებითი', value: 3}];
+  public types: AccountTypeModel[];
 
-  public currencies: CurrencyModel[] = [{label: 'GEL', value: 'GEL'}, {label: 'USD', value: 'USD'},
-    {label: 'EUR', value: 'EUR'}, {label: 'RUB', value: 'RUB'}];
-
+  public currencies: CurrencyModel[];
 
   deleteAccount(client): Promise<any> {
     return this.sendPutRequest('clients', client);
@@ -25,4 +23,9 @@ export class AccountService extends DataService{
   saveAccount(client): Promise<any> {
     return this.sendPutRequest('clients', client);
   }
+
+  getConstants(): Promise<any> {
+    return  this.sendGetRequest('accountConstants');
+  }
+
 }

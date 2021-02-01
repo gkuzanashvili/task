@@ -20,7 +20,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-account let-editing="editing" let-ri="rowIndex">
-    <tr [pEditableRow]="account">
+    <tr>
       <td>{{account.accountNumber}}</td>
       <td>{{account.clientNumber}}</td>
       <td>{{ getTypeLabel(account.accountType)}}</td>

@@ -6,6 +6,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
 import {ValidatorModule} from '../validator/validator.module';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -15,12 +16,13 @@ import {ValidatorModule} from '../validator/validator.module';
     InputComponent,
     InputTextModule,
   ],
-  imports: [
-    CommonModule,
-    InputTextModule,
-    InputNumberModule,
-    DropdownModule,
-    ValidatorModule,
-  ]
+    imports: [
+        CommonModule,
+        InputTextModule,
+        InputNumberModule,
+        DropdownModule,
+        ValidatorModule,
+        FormsModule,
+    ]
 })
 export class InputModule { }

@@ -45,6 +45,7 @@
     <app-input label="ანგარიშის ნომერი"
                formControlName="accountNumber"
                inputType="number"
+               [isDisabled]="!!account.accountNumber"
                [checkValidity]="submitted"
                [errors]="accountForm.get('accountNumber').errors"
     ></app-input>

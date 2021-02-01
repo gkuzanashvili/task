@@ -39,17 +39,9 @@ export class AccountViewComponent implements OnInit {
 
   onSave() {
     this.submitted = true;
-    this.account = this.accountForm.value;
-    console.log(this.accountForm, this.accountForm.valid);
     if (this.accountForm.valid) {
+      this.account = this.accountForm.value;
       this.newAccount.emit(this.account);
     }
   }
-  // clare() {
-  //   if (this.accountForm && this.accountForm.controls) {
-  //     Object.keys(this.accountForm.controls).forEach(key => {
-  //       this.accountForm.get(key).setValue('');
-  //     });
-  //   }
-  // }
 }

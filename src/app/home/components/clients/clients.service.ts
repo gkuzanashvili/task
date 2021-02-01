@@ -1,17 +1,12 @@
 import {DataService} from '../../../services/data-service';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
 import {ClientModel} from './clients.model';
 
 @Injectable()
 export class ClientsService extends DataService{
 
-  getClients(): Observable<ClientModel[]>{
+  getClients(): Promise<ClientModel[]>{
     return this.sendGetRequest('clients');
-  }
-
-  getClient(id): Promise<any>{
-    return this.sendGetRequestById('clients', id);
   }
 
   deleteClient(id): Promise<any> {

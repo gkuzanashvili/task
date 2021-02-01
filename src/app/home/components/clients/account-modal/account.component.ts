@@ -25,12 +25,22 @@ export class AccountComponent implements OnInit{
 
   ngOnInit() {
     this.initData(this.client);
+    this.initConstants();
   }
   initData(client?: ClientModel) {
     this.client = {...client};
     if (client.accounts) {
       this.accounts = client.accounts;
     }
+  }
+
+  initConstants() {
+    this.accountService.getConstants().then(res => {
+      console.log(res);
+      this.accountService.statuses = res.statuses;
+      this.accountService.types = res.types;
+      this.accountService.currencies = res.currencies;
+    });
   }
   openNewAccount() {
       this.newAccountsModal = true;

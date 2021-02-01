@@ -3,37 +3,15 @@
   <div class="p-inputgroup">
     <span *ngIf="icon" class="p-inputgroup-addon"><i class="{{icon}}"></i></span>
     <input
-           type="{{inputType}}"
-           id="{{label}}"
-           pInputText
-           [value]="value"
-           [ngClass]="checkValidity && errors ? 'ng-invalid ng-dirty' :''"
-           [disabled]="isDisabled"
-           (input)="changed($event.target.value)"
-           (blur)="touched()"
+      type="{{inputType}}"
+      id="{{label}}"
+      pInputText
+      [(ngModel)]="value"
+      [ngClass]="checkValidity && errors ? 'ng-invalid ng-dirty' :''"
+      [disabled]="isDisabled"
+      (input)="changed($event.target.value)"
+      (blur)="touched()"
     />
   </div>
   <app-validator [checkValidity]="checkValidity" [errors]="errors"></app-validator>
 </div>
-
-
-
-
-
-<!--  <div *ngIf="errors.minlength">-->
-<!--    Name must be at least 4 characters long.-->
-<!--  </div>-->
-<!--  <div *ngIf="errors.forbiddenName">-->
-<!--    Name cannot be Bob.-->
-<!--  </div>-->
-<!--  <ng-template [ngIf]="checkValidity">-->
-<!--    <div  *ngFor="let mes of errorMessages"></div>-->
-<!--  </ng-template>-->
-
-
-
-
-<!--<div class="p-inputgroup">-->
-<!--  -->
-<!--  <input type="text" pInputText placeholder="Username">-->
-<!--</div>-->

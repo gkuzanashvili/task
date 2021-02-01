@@ -9,7 +9,7 @@
       "gender": "F",
       "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAAEACAYAAAAeFIzYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAynSURBVHhe7d0JjJT1GcfxplqVamy1ldaqVZEaxDZeRQseHMtREEVQTBqPxgM8oqKJTa2a1oha1CqL9cADFRVUikdBoSqIR1FMvDFpPIpHtbXxKCAIAjNP/8+7Mzg7/ObdBRblmf2+ySc7+3vfed/nTX7z7jszCXwjLQbUIRkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyRBvYZLMOttUPOlvHrn1s5wOPtZ8MGGVdh1xoPxt+qe31qytt72PG2j7HjUuuqWFcto1v68/x5/o+fF++z6067pYdQx0bOsR66LDtjta54XQ7+NwZNrjxPTvylqU2fGLBjr7D2oTvy/fp+/Zj7NZwmnXYZgc5SzsmQ6yDTbfYynbtebL1v+QVO+q2VamAXsJWyMq67vxY/Ua/nB3bZ1CztUMyxFracrtd7YBT77IjJyyX5fsq+LF9Bp9FzdjOyBBrYesd9rRev3vSjro9XT03Aj6Lz6RmbUdkiFbyq2PP81Kpb0tXzBJ/XElleXlZ5fra+yjK3Gdq51duGaIVNt18K+s24g478tZik1SoZj/Lj6t/v7Uyq1hX/r38nFTa1Y9Xr6vervx7snpbV0yz3ZnNqGZvB2SIVtil5wg74qZlNiyVqG2ZyNaez+YzqtnbARmiBR222dEa/vCiDZuQSrQRa7joJeuw7U7yHOqcDNGCTr1PtyNuXmVDbylu1HxGn1WdQ52TIXJs8q0O1v2sh2SRNkbdRz2czazOpY7JEDm23G43G3D5O+lq6FfEjZ/PumXHzvJc6pgMkeP7XfrY4GuX2JCbiiH4rD6zOpc6JkPk2OmAY+3w8atsyI2pOBu7VGyf1WdW51LHZIgcnRpG2eGpNHkOG9/0c2i6FRjWSr7tUL/KpucNTs8ffEPaR2k/ih/DtykfK4/PrM6ljskQOXYfdGFT4Wo4LJXtlLuLNn2+2by3zZ57p3V822cWmM15w+zeF4p23l/TPXIqZVbcKl7okZOLdsdzRfvtg03HrN6mks+szqWOyRA5ugy5JCtSLV6kGa/Zei+Ll5vdPi9dxb3cFfs/9Pqi/eaBor3+36bt/MWQvQAqtqnmM6tzqWMyRI49hl3RVJhUsMHXF0rKj5uK+MJ7TaVb32XZCrMrHktlvq5p337cMY8U7cNFpQ3S8tK/zIb5m8RshiZNs3352GdW51LHZIgcex51dSpMZZmbG3ZjwV5so2L78vy76R487fOI8QW7ZW7RPktX8srFjzU0rW8+R/PZfGZ1LnVMhsix5/DG7Apay9BUwBffK5Zqt/7LBwvNjrutYGNnF235ylJYsWTFTsdUs5T5zOpc6pgMkWPP4ePs0GtTYYRBiV9Z2/KK/fESs9PTm9Hn3tYvFn8R+TH92Gom5zOrc6ljMkSOrkeNy0ok/TkV+4a2vWJ/stRs1JSCvfZBKahasmKnY/qx5UxJV4qNlmTFTiUaWMOQdE/blsX+NBX77FTs+TnF9mOqWZzP6jOrc6ljMkQOL8nAa1Jpajg83dO+kN7wtdXixR51b06x07GGpGOqWcooNlq0x5Hj7JfjCjUdlv70P/9OGxf7ntrF9heRv5jULGU+szqXOiZD5MgtdmPBBqc//bXe6K3L4sU+fVLBnv2n3qcX219MA9Q8JRQbLeoyrNEGpALXMjAVafY/2rbYJ00s2JiZxewLm+olK3Z6MalZynxmdS51TIbI0eWIq23A2FSYGvpeXbAJf2/bYp+ciu1/Da57vGgLPy+tKC1ebP8r0b9ihvLj8k+fWZ1LHZMhcux+2BXWP5VXSiXyYp94e8He/aTUvPVcPlli2f76XtW0/4umFez9/5VWpiUrdnqDKOcp2f1wvlJHCzoPGm39UlmarJL6XrXKzruvYG9/bFYsFXBdl9c/LNrwG7zYTftuSD/PmOyfazft+ek3ijYwXc3z5vGZ1bnUMRkiR6d+F1g/L1kL+v5plR1/S8Gufbxg018uZvfdT76+dmbOL9q5U0qlrtCQ9n3szQUb/0TRzkwlr15fzWdW51LHZIgcPz74rKy0rdFw5Srrk/jj/qlg/dPVs9oA8Xs588L6Pqr367zcvSv2n8dnVudSx2SIHNvvd0wq2wpZoEpePPk4FbFc1vLjbL1n5d8rlJ9XqXJ/NZWe67P6zOpc6pgMkWObzr2t12WL1yjgxspn9ZnVudQxGaKGWbNm2bx58+zZZ56xuXPn2tNPP21PPfmUPfnEEzZnzhybPXu2zXpslj326KP2yN8esQcfnmUNV6TbhQ2kNfvucf4C6/A9/vkF5PBSr1y5stVmPPyw9bk8FexrtNcJ0+2b/IM5yONXai/ssmXL7LW3PrR+50yx7qdOWsPnn3+ebffQ9OnWO5Xr69JrzArboftp8lzqnAxRg99+lIvt5r/1H+t79j32i1PuaMaLvWLFCps2bZr1HpNKVqWXyDaEbme9YJt/Z0d5LnVOhqjB76mri91w1iQ7YMTtzSxdujQr9oMPPGi9/piK/DU4ZPRS277byfI82gEZogZ/o1gu9vw3/219zrzT9j95QnMnTbAlS5bYF198YQ/cf7/19KJdtsp6tiRt5z+9lGus81xkefY4eqJtshn/8DtawT/9KBd7xJhp1u2km9d04s322WefZcW+b+rUUtFWNivdmtR6zypVry9vs+bve4+YY1tsw3/VgVbyj/S82B99usj2O+HGkvGZqbNfzfjjxYsX2/Lly23qlCl2yKUrv1J7jXjcvt2xq5y/HZEhavDPqb3YC97/yPb99Q2rTZ39Snb74VfqKY+9bIsWLcqKPeWee+2QS1LhvgIHXbTEugyfmK7Uu8jZ2xkZogb/8qV8KzLonIm2z/HX2vDzJ68utV+pvdQLFy7Min3P5Lvt4FS6Fo0WWSW1vpQddPFy2/eMF+2HPz+xPd9TV5MhavBvFL3YXtq5ryywvY+9xk64+C/ZpyCV5XZe/smTJlmP3y+ygy/+IiviQRUqf6/1WEr7OjDts9u5C+ynx0+37fc/1Tbful1+pJdHhqjBvyb3Yjv/OO/ZV9+2C66fmb1R9LKXeandXXfead/t1Ns67nWM/aj7mbZTz/Nt576jbdcBl1ungVdZp0Fjk8Ya0rq0jW/rz/Hn+j58X77PLbbdrT1+o9haMkQNM2fOzL4m928U/csX/5zaP9LzTz/8jaLfU/vth1+pvdQ3jR8v94MNToZAdDIEopMhEJ0MgehkCEQnQyA6GWId9Wh8M/u3PtZYZoyU22ODkSHaysgZ3mobqdZhQ5Ih2sTIVGm/WKt12MBkiDaQ3ZZU34L0aLTKm5Vmpa+5zl8gb1rjyC/X+7rK2543G3t8uR84GWJ9ZSVNZexRmVddwZtt0/K61F7r4euy25uKMnO7o8gQ66WH+cV0jatoVtbmBfROZmXOW1e+Yq9+kbT0OxIZYj1ktwjlq2sliv1VkiHWWV7JfF25rEmzMre0jmKvJRliHWW3u2opv4nMClteqspYcx3FXgcyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkC0ckQiE6GQHQyBKKTIRCdDIHoZAhEJ0MgOhkCgX3D/g+HKyRdAVh0+gAAAABJRU5ErkJggg==",
       "legalAddress": {
-        "country": "sdf",
+        "country": "uytyu",
         "city": "sf",
         "address": "sdf"
       },
@@ -55,7 +55,8 @@
         "country": "v",
         "city": "f",
         "address": "x"
-      }
+      },
+      "accounts": []
     },
     {
       "id": 5,
@@ -137,8 +138,44 @@
   "accountConstants": {
     "types": [
       {
-        "label": "dffd",
+        "label": "მიმდინარე",
         "value": "1"
+      },
+      {
+        "label": "შემნახველი",
+        "value": "2"
+      },
+      {
+        "label": "დაგროვებითი",
+        "value": "3"
+      }
+    ],
+    "statuses": [
+      {
+        "label": "აქტიური",
+        "value": "A"
+      },
+      {
+        "label": "დახურული",
+        "value": "C"
+      }
+    ],
+    "currencies": [
+      {
+        "label": "GEL",
+        "value": "GEL"
+      },
+      {
+        "label": "USD",
+        "value": "USD"
+      },
+      {
+        "label": "EUR",
+        "value": "EUR"
+      },
+      {
+        "label": "RUB",
+        "value": "RUB"
       }
     ]
   }

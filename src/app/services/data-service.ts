@@ -11,13 +11,13 @@ export abstract class DataService {
   private url = environment.jsonServerURL;
   constructor(private httpClient: HttpClient) { }
 
-  public sendGetRequest(param: string): Observable<any>{
-    return this.httpClient.get( this.url + param, {responseType: 'json'});
+  public sendGetRequest(param: string): Promise<any>{
+    return this.httpClient.get( this.url + param, {responseType: 'json'}).toPromise();
   }
-  public sendGetRequestById(param: string, id): Promise<any>{
-    const delUrl = `${this.url + param}/${id}`;
-    return this.httpClient.get(delUrl , {responseType: 'json'}).toPromise();
-  }
+  // public sendGetRequestById(param: string, id): Promise<any>{
+  //   const delUrl = `${this.url + param}/${id}`;
+  //   return this.httpClient.get(delUrl , {responseType: 'json'}).toPromise();
+  // }
   public sendDeleteRequest(param: string, id: number): Promise<any>{
     const delUrl = `${this.url + param}/${id}`;
     return this.httpClient.delete(delUrl)

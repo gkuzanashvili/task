@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AddressModel, ClientModel} from '../clients.model';
+import { ClientModel} from '../clients.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {GenderPipe} from '../../../../pipes/gender-pipe';
 import {ExactLengthValidator} from '../../../../validators/exact-length-validator.service';
@@ -35,8 +35,6 @@ export class ClientModalComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
      // this.clientForm.disable({onlySelf: true, emitEvent: true});
-
-
   }
 
   initForm() {
@@ -59,25 +57,6 @@ export class ClientModalComponent implements OnInit {
     this.legalAddress = this.initAddressForm();
     this.actualAddress = this.initAddressForm();
   }
-
-  fillForm(client: ClientModel) {
-    this.submitted = false;
-    this.client = {...client};
-    console.log(this.client, client, 'client');
-    this.clientImg = this.client.image;
-    this.fillFormControls(this.client, this.clientForm);
-    // if (this.clientForm && this.clientForm.controls) {
-    //       Object.keys(this.clientForm.controls).forEach(key => {
-    //         this.clientForm.get(key).setValue(this.client[key]);
-    //       });
-    // }
-    this.fillFormControls(this.client.legalAddress, this.legalAddress);
-    this.fillFormControls(this.client.actualAddress, this.actualAddress);
-    // this.legalAddress.setValue(this.client.legalAddress);
-    // this.actualAddress.setValue(this.client.actualAddress);
-    //this.clientForm.setValue( this.client);
-  }
-
   initAddressForm(): FormGroup {
     return this.formBuilder.group({
       country: new FormControl('', Validators.required),
@@ -85,13 +64,14 @@ export class ClientModalComponent implements OnInit {
       address: new FormControl('', Validators.required),
     });
   }
-
-  fillFormControls(data: any, form: FormGroup) {
-    if (form && form.controls) {
-      Object.keys(form.controls).forEach(key => {
-        form.get(key).setValue(data[key]);
-      });
-    }
+  fillForm(client: ClientModel) {
+    this.submitted = false;
+    this.client = null;
+    this.client = {...client};
+    this.clientImg = this.client.image;
+    this.fillFormControls(this.client, this.clientForm);
+    this.fillFormControls(this.client.legalAddress, this.legalAddress);
+    this.fillFormControls(this.client.actualAddress, this.actualAddress);
   }
 
   onSave() {
@@ -107,36 +87,11 @@ export class ClientModalComponent implements OnInit {
     }
   }
 
-  // clare() {
-  //   if (this.clientForm && this.clientForm.controls) {
-  //     Object.keys(this.clientForm.controls).forEach(key => {
-  //       this.clientForm.get(key).setValue('');
-  //     });
-  //   }
-  //   if (this.legalAddress && this.legalAddress.controls) {
-  //     Object.keys(this.legalAddress.controls).forEach(key => {
-  //       this.legalAddress.get(key).setValue('');
-  //     });
-  //   }
-  //   if (this.actualAddress && this.actualAddress.controls) {
-  //     Object.keys(this.actualAddress.controls).forEach(key => {
-  //       this.actualAddress.get(key).setValue('');
-  //     });
-  //   }
-  // }
   isValid() {
     return this.clientForm.valid && this.legalAddress.valid && this.actualAddress.valid;
   }
-  // getErrors(fieldName) {
-  //   return this.clientForm.get(fieldName).errors ?  this.clientForm.get(fieldName)['errors'] : [];
-  // }
 
-  // openFile(){
-  //   console.log( document.querySelector('input').click();)
-  //   document.querySelector('input').click();
-  // }
   onUpload(event) {
-    console.log(event);
     const file = (event.target as HTMLInputElement).files[0];
     if (file) {
       const fileReader = new FileReader();
@@ -145,15 +100,16 @@ export class ClientModalComponent implements OnInit {
         this.clientImg = e.target.result;
         console.log(this.clientImg);
       };
-      //this.clientForm.get('image').setValue(this.clientImg);
     }
-    //console.log(event);
   }
 
-  uploadErr(event) {
-    console.log(event);
+  private fillFormControls(data: any, form: FormGroup) {
+    if (form && form.controls) {
+      Object.keys(form.controls).forEach(key => {
+        form.get(key).setValue(data[key]);
+      });
+    }
   }
-
 
 }
 

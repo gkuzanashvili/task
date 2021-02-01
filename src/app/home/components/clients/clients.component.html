@@ -2,6 +2,14 @@
 <div class="card">
   <p-table #dt [value]="clients" [rows]="5" [paginator]="true"
            [globalFilterFields]="['firstName','lastName','pin','phoneNumber']"
+           currentPageReportTemplate=" სულ: {totalRecords}"
+           [showCurrentPageReport]="true"
+           [responsive]="true"
+           (sortFunction)="onSort($event)"
+           [customSort]="true"
+           [sortField]="sortField"
+           (onPage)="setPage($event)"
+           [first]="startRow"
            [rowHover]="true" dataKey="id">
     <ng-template pTemplate="caption">
             <div class="p-grid p-jc-between">

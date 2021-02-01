@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClientModel} from './clients.model';
 import {ClientsService} from './clients.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
@@ -27,11 +27,20 @@ export class ClientsComponent implements OnInit {
 
   clientSearchForm: FormGroup;
 
+  startRow = 0;
+
+  page = 1;
+
+  sortField = '';
+
+  sortOrder = 0;
+
   @ViewChild(ClientModalComponent) clientModalComponent: ClientModalComponent;
 
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     public clientService: ClientsService,
     public formBuilder: FormBuilder,
     public messageService: MessageService,
@@ -40,11 +49,29 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.clients = [];
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.page = params.page ? params.page : 1;
+      this.startRow = (this.page - 1) * 5;
+      console.log(params, 'პარამს');
+      this.sortOrder = params.sortOrder;
+      this.sortField = params.sortField;
+    });
+    this.setRoutParam();
     this.getClients();
+  }
+  setPage(event) {
+    this.page = event.first / event.rows + 1;
+    this.setRoutParam();
+    console.log(event, this.page);
+
+  }
+  setRoutParam() {
+    const params = this.sortField ? {page: this.page, sortField: this.sortField, sortOrder: this.sortOrder } :  {page: this.page };
+    this.router.navigate([], { queryParams: params}).then();
   }
 
   getClients() {
-    this.clientService.getClients().subscribe(clients => {
+    this.clientService.getClients().then(clients => {
       this.clients = clients;
       console.log(this.clients, 'clinetsjd');
     });
@@ -105,7 +132,17 @@ export class ClientsComponent implements OnInit {
     }
   }
 
+  onSort(event) {
+    console.log(event, 'event');
 
+    if (event.data.length) {
+      this.page = 1;
+      this.sortField = event.field;
+      this.sortOrder = event.order;
+      this.setRoutParam();
+      event.data = this.sort(event.data, event.field, event.order);
+    }
+  }
   showAccounts(client: ClientModel) {
     console.log(client.accounts, 'acct');
     this.client = {...client};
@@ -158,8 +195,28 @@ export class ClientsComponent implements OnInit {
     this.client = new ClientModel();
   }
 
-  createId(): number {
+  private createId(): number {
     const ids = this.clients.map((item) => item.id);
     return Math.max(...ids) + 1;
   }
+  private sort(data, field, order) {
+    return  data.sort((data1, data2) => {
+      const value1 = data1[field];
+      const value2 = data2[field];
+      let result = null;
+      if (value1 == null && value2 != null) {
+        result = -1;
+      } else if (value1 != null && value2 == null) {
+        result = 1;
+      } else if (value1 == null && value2 == null) {
+        result = 0;
+      } else if (typeof value1 === 'string' && typeof value2 === 'string') {
+        result = value1.localeCompare(value2);
+      } else {
+        result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+      }
+      return (order * result);
+    });
+  }
+
 }
