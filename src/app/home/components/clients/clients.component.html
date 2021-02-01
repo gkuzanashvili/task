@@ -1,5 +1,4 @@
 <p-toast></p-toast>
-
 <div class="card">
   <p-table #dt [value]="clients" [rows]="5" [paginator]="true"
            [globalFilterFields]="['firstName','lastName','pin','phoneNumber']"
@@ -22,6 +21,7 @@
         <div class="p-grid">
           <div class="p-col-6">
             <app-input label="სახელი"
+                       (blur)="searchResult()"
                        formControlName="firstName"
             ></app-input>
           </div>
@@ -37,7 +37,7 @@
                        formControlName="pin"
             ></app-input>
           </div>
-          <div class="p-col-5">
+          <div class="p-col-6">
             <app-input [icon]="'pi pi-mobile'"
                        label="ტელეფონი"
                        [inputType]="'number'"
@@ -47,7 +47,6 @@
           <div class="p-col-1">
             <button pButton pRipple label="ძიება" icon="pi pi-search" class="p-button" (click)="searchResult()"></button>
           </div>
-
         </div>
       </p-panel>
 

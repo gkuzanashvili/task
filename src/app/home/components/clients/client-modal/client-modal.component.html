@@ -2,18 +2,24 @@
   <div class="p-col-3">
         <div class="p-grid">
           <div class="p-col-12">
-            <img src="{{client.image}}" width="140" height="180" class="p-shadow-4" />
+            <img src="{{clientImg}}" width="140" height="180" class="p-shadow-4" />
           </div>
           <div class="p-col-12">
-            <p-fileUpload  chooseLabel="ატვირთვა"
-                           [auto]="true"
-                           mode="basic"
-                           accept="image/*"
-                           maxFileSize="1000000"
-                           customUpload="true"
-                           (onError)="uploadErr($event)"
-                           (uploadHandler)="onUpload($event)">
-            </p-fileUpload>
+
+            <button pButton pRipple label="ატვირთვა" icon="pi pi-plus" class="p-button" (click)="fileInput.click()">
+              <input type="file" style="display:none" #fileInput (change)="onUpload($event)">
+            </button>
+
+<!--            <p-fileUpload  chooseLabel="ატვირთვა"-->
+<!--                           [auto]="true"-->
+<!--                           mode="basic"-->
+<!--                           multiple="true"-->
+<!--                           accept="image/*"-->
+<!--                           maxFileSize="1000000"-->
+<!--                           customUpload="true"-->
+<!--                           (onError)="uploadErr($event)"-->
+<!--                           (uploadHandler)="onUpload($event)">-->
+<!--            </p-fileUpload>-->
           </div>
         </div>
       </div>
