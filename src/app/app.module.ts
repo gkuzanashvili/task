@@ -21,6 +21,7 @@ import {ValidatorModule} from './shared-ui/validator/validator.module';
 import {ExactLengthValidator} from './validators/exact-length-validator.service';
 import {PhoneNumberValidator} from './validators/phone-number-validator';
 import {GeoEnRegexValidator} from './validators/geo-en-regex-validator';
+import {AccountResolver} from './home/components/clients/account-modal/account.resolver';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,6 @@ import {GeoEnRegexValidator} from './validators/geo-en-regex-validator';
     GenderPipe,
     ClientModalComponent,
     AccountViewComponent,
-
   ],
     imports: [
         HttpClientModule,

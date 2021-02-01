@@ -17,7 +17,18 @@
         "country": "gggg",
         "city": "tttt",
         "address": "jjjjjjjjjjjjjjjjjjjj"
-      }
+      },
+      "accounts": [
+        {
+          "accountNumber": "23423",
+          "clientNumber": "12312312312",
+          "currency": [
+            "USD"
+          ],
+          "accountStatus": "C",
+          "accountType": 2
+        }
+      ]
     },
     {
       "id": 3,
@@ -114,5 +125,13 @@
         "address": "dg"
       }
     }
-  ]
+  ],
+  "accountConstants": {
+    "types": [
+      {
+        "label": "dffd",
+        "value": "1"
+      }
+    ]
+  }
 }
