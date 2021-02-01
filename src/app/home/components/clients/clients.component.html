@@ -5,9 +5,8 @@
            currentPageReportTemplate=" სულ: {totalRecords}"
            [showCurrentPageReport]="true"
            [responsive]="true"
-           (sortFunction)="onSort($event)"
-           [customSort]="true"
            [sortField]="sortField"
+           [sortOrder]="sortOrder"
            (onPage)="setPage($event)"
            [first]="startRow"
            [rowHover]="true" dataKey="id">
@@ -68,7 +67,7 @@
         <th>სქესი</th>
         <th pSortableColumn="pin">პირადი ნომერი <p-sortIcon field="pin"></p-sortIcon></th>
         <th>ტელეფონი</th>
-        <th></th>
+        <th [style]="{'width':'350px'}" ></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>
@@ -79,9 +78,9 @@
         <td>{{client.gender | genderPipe}}</td>
         <td>{{client.pin}}</td>
         <td>{{client.phoneNumber}}</td>
-        <td style="width: 100px">
+        <td  [style]="{'width':'350px'}" >
           <button pButton pRipple label="ანგარიშები" class="p-button-outlined p-mr-2" (click)="showAccounts(client)"></button>
-<!--          <button pButton pRipple icon="pi pi-user" class="p-button-outlined p-button-secondary p-mr-2" (click)="editClient(client)"></button>-->
+          <button pButton pRipple icon="pi pi-eye" class="p-button-outlined p-button-secondary p-mr-2" (click)="editClient(client)"></button>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-success p-mr-2" (click)="editClient(client)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger p-mr-2" (click)="deleteClient(client)"></button>
         </td>

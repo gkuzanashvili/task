@@ -25,6 +25,7 @@ export class ClientModalComponent implements OnInit {
   clientForm: FormGroup;
   legalAddress: FormGroup;
   actualAddress: FormGroup;
+  isDisabled = false;
   constructor(
     private formBuilder: FormBuilder,
     public phoneNumberValidator: PhoneNumberValidator,
@@ -34,7 +35,6 @@ export class ClientModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-     // this.clientForm.disable({onlySelf: true, emitEvent: true});
   }
 
   initForm() {
@@ -64,7 +64,7 @@ export class ClientModalComponent implements OnInit {
       address: new FormControl('', Validators.required),
     });
   }
-  fillForm(client: ClientModel) {
+  fillForm(client: ClientModel, isViewMode?: false) {
     this.submitted = false;
     this.client = null;
     this.client = {...client};
@@ -72,6 +72,7 @@ export class ClientModalComponent implements OnInit {
     this.fillFormControls(this.client, this.clientForm);
     this.fillFormControls(this.client.legalAddress, this.legalAddress);
     this.fillFormControls(this.client.actualAddress, this.actualAddress);
+    this.disableForm();
   }
 
   onSave() {
@@ -109,6 +110,12 @@ export class ClientModalComponent implements OnInit {
         form.get(key).setValue(data[key]);
       });
     }
+  }
+  private disableForm() {
+    this.clientForm.disable({onlySelf: true, emitEvent: true});
+    this.legalAddress.disable({onlySelf: true, emitEvent: true});
+    this.actualAddress.disable({onlySelf: true, emitEvent: true});
+    this.isDisabled = true;
   }
 
 }

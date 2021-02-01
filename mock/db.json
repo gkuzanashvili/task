@@ -97,25 +97,6 @@
       }
     },
     {
-      "id": 7,
-      "image": "",
-      "pin": "12341234123",
-      "firstName": "ere",
-      "lastName": "rer",
-      "phoneNumber": "523345345",
-      "gender": "",
-      "legalAddress": {
-        "country": "fgs",
-        "city": "dfg",
-        "address": "dg"
-      },
-      "actualAddress": {
-        "country": "dg",
-        "city": "dg",
-        "address": "dg"
-      }
-    },
-    {
       "id": 8,
       "pin": "12345678998",
       "firstName": "dd",

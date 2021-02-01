@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {catchError} from 'rxjs/operators';
 
@@ -12,12 +12,10 @@ export abstract class DataService {
   constructor(private httpClient: HttpClient) { }
 
   public sendGetRequest(param: string): Promise<any>{
-    return this.httpClient.get( this.url + param, {responseType: 'json'}).toPromise();
+    return this.httpClient.get( this.url + param, {responseType: 'json'}).pipe(
+      catchError( this.handleError)
+    ).toPromise();
   }
-  // public sendGetRequestById(param: string, id): Promise<any>{
-  //   const delUrl = `${this.url + param}/${id}`;
-  //   return this.httpClient.get(delUrl , {responseType: 'json'}).toPromise();
-  // }
   public sendDeleteRequest(param: string, id: number): Promise<any>{
     const delUrl = `${this.url + param}/${id}`;
     return this.httpClient.delete(delUrl)
@@ -28,30 +26,26 @@ export abstract class DataService {
 
   public sendPutRequest(param, data): Promise<any> {
     const url = `${this.url + param}/${data.id}`;
-    return  this.httpClient.put(url, data, {responseType: 'json'} ).toPromise();
+    return  this.httpClient.put(url, data, {responseType: 'json'} ).pipe(
+      catchError( this.handleError)
+    ).toPromise();
   }
   public sendPostRequest(param, data): Promise<any> {
     const url = `${this.url + param}`;
-    return  this.httpClient.post(url, data, {responseType: 'json'}).toPromise();
+    return  this.httpClient.post(url, data, {responseType: 'json'}).pipe(
+      catchError( this.handleError)
+    ).toPromise();
   }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // Return an observable with a user-facing error message.
     return throwError(
       'Something bad happened; please try again later.');
   }
-  //
-  // public getDictionary(): Observable<any>{
-  //   return this.httpClient.get(this.REST_API_SERVER, {responseType: 'json'});
-  // }
 }

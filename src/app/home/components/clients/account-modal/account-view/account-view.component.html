@@ -6,16 +6,10 @@
                    placeholder="ვალუტა"
                    optionLabel="label"
                    optionValue="value"
+
                    maxSelectedLabels="4"
                    [filter]="false"
                    itemSize="30"></p-multiSelect>
-
-<!--    <p-dropdown [options]="accountService.currencies"-->
-<!--                placeholder="ვალუტა"-->
-<!--                optionLabel="label" optionValue="value"-->
-<!--                formControlName="currency"-->
-<!--                [ngClass]="submitted && !accountForm.get('currency').valid ? 'ng-invalid ng-dirty' :''"-->
-<!--                [style]="{'width':'100%'}"></p-dropdown>-->
     <app-validator [checkValidity]="submitted"
                    [errors]="accountForm.get('currency').errors"></app-validator>
   </div>

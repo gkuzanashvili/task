@@ -1,5 +1,5 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {AccountModel, AccountStatusType, AccountTypeModel, CurrencyModel} from './account.model';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AccountModel } from './account.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ClientModel} from '../clients.model';
 import {AccountService} from './account.service';
@@ -36,7 +36,6 @@ export class AccountComponent implements OnInit{
 
   initConstants() {
     this.accountService.getConstants().then(res => {
-      console.log(res);
       this.accountService.statuses = res.statuses;
       this.accountService.types = res.types;
       this.accountService.currencies = res.currencies;
@@ -60,12 +59,16 @@ export class AccountComponent implements OnInit{
       this.client.accounts[changedIndex] = {...account};
       this.accountService.updateAccount(this.client).then((res) => {
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მონაცემები განახლდა', life: 3000});
+      }).catch(err => {
+        this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
       });
     } else {
       this.accounts.push({...account});
       this.client.accounts = this.accounts;
       this.accountService.saveAccount(this.client).then((res) => {
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'ანგარიში დამატებულია', life: 3000});
+      }).catch(err => {
+        this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
       });
     }
     this.newAccountsModal = false;
@@ -84,13 +87,12 @@ export class AccountComponent implements OnInit{
         this.accountService.deleteAccount(this.client).then(() => {
           this.initData(this.client);
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'ანგარიში წაიშალა', life: 3000});
+        }).catch(err => {
+          this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
         });
       }
     });
   }
-  // close() {
-  //   this.accountComponent.clare();
-  // }
   getTypeLabel(typeValue) {
     return this.accountService.types.find(i => i.value === typeValue).label;
   }

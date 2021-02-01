@@ -2,7 +2,7 @@ import {DataService} from '../../../services/data-service';
 import {Injectable} from '@angular/core';
 import {ClientModel} from './clients.model';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ClientsService extends DataService{
 
   getClients(): Promise<ClientModel[]>{

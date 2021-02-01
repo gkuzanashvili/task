@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ClientModel} from './clients.model';
 import {ClientsService} from './clients.service';
@@ -12,7 +12,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./clients.component.css'],
   providers: [ClientsService]
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent implements OnInit{
   clientModal: boolean;
 
   showAccountsTable: boolean;
@@ -50,15 +50,18 @@ export class ClientsComponent implements OnInit {
   ngOnInit(): void {
     this.clients = [];
     this.activatedRoute.queryParams.subscribe(params => {
+      console.log(params, 'პარამს');
       this.page = params.page ? params.page : 1;
       this.startRow = (this.page - 1) * 5;
-      console.log(params, 'პარამს');
       this.sortOrder = params.sortOrder;
       this.sortField = params.sortField;
     });
-    this.setRoutParam();
-    this.getClients();
+    this.activatedRoute.data.subscribe( data => {
+      this.clients = data.clients;
+    });
+    // this.setRoutParam();
   }
+
   setPage(event) {
     this.page = event.first / event.rows + 1;
     this.setRoutParam();
@@ -74,6 +77,8 @@ export class ClientsComponent implements OnInit {
     this.clientService.getClients().then(clients => {
       this.clients = clients;
       console.log(this.clients, 'clinetsjd');
+    }).catch(err => {
+      this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
     });
   }
 
@@ -133,7 +138,7 @@ export class ClientsComponent implements OnInit {
   }
 
   onSort(event) {
-    console.log(event, 'event');
+    //console.log(event, 'event');
 
     if (event.data.length) {
       this.page = 1;
@@ -143,8 +148,11 @@ export class ClientsComponent implements OnInit {
       event.data = this.sort(event.data, event.field, event.order);
     }
   }
+  go(event) {
+    console.log(event, 'gogogo');
+  }
   showAccounts(client: ClientModel) {
-    console.log(client.accounts, 'acct');
+   // console.log(client.accounts, 'acct');
     this.client = {...client};
     this.showAccountsTable = !this.showAccountsTable;
     this.getClients();
@@ -169,6 +177,8 @@ export class ClientsComponent implements OnInit {
           this.client = new ClientModel();
           this.showAccountsTable = false;
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'მომხმარებელი წაიშალა', life: 3000});
+        }).catch(err => {
+          this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
         });
       }
     });
@@ -181,6 +191,8 @@ export class ClientsComponent implements OnInit {
         console.log(res, 'update');
         this.getClients();
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მონაცემები განახლდა', life: 3000});
+      }).catch(err => {
+        this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
       });
 
     } else {
@@ -189,6 +201,8 @@ export class ClientsComponent implements OnInit {
       this.clientService.saveClient(this.client).then(() => {
         this.getClients();
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მომხმარებელი დაემატა', life: 3000});
+      }).catch(err => {
+        this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
       });
     }
     this.clientModal = false;
