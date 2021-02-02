@@ -10,7 +10,9 @@ export class AddressComponent implements OnInit {
   @Input() label: string;
   @Input() formGroup: FormGroup;
   @Input() checkValidity: boolean;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

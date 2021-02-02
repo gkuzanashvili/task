@@ -1,16 +1,17 @@
 <div class="p-grid" [formGroup]="clientForm">
   <div class="p-col-3">
-        <div class="p-grid">
-          <div class="p-col-12">
-            <img src="{{clientImg}}" width="140" height="180" class="p-shadow-4" />
-          </div>
-          <div class="p-col-12">
-            <button pButton pRipple [disabled]="isDisabled" label="ატვირთვა" icon="pi pi-plus" class="p-button" (click)="fileInput.click()">
-              <input type="file" style="display:none" #fileInput (change)="onUpload($event)">
-            </button>
-          </div>
-        </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <img src="{{clientImg}}" width="140" height="180" class="p-shadow-4"/>
       </div>
+      <div class="p-col-12">
+        <button pButton pRipple *ngIf="!isDisabled" label="ატვირთვა" icon="pi pi-plus" class="p-button"
+                (click)="fileInput.click()">
+          <input type="file" style="display:none" #fileInput (change)="onUpload($event)">
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="p-col-8">
     <div class="p-col-12">
       <app-input label="სახელი"
@@ -48,15 +49,14 @@
                  formControlName="phoneNumber"
       ></app-input>
     </div>
-
-    <app-address [formGroup]="legalAddress" [checkValidity]="submitted" label="იურიდიული მისამართი" ></app-address>
-    <app-address [formGroup]="actualAddress" [checkValidity]="submitted" label="საცხოვრებელი მისამართი"  ></app-address>
-
+    <app-address [formGroup]="legalAddress" [checkValidity]="submitted" label="იურიდიული მისამართი"></app-address>
+    <app-address [formGroup]="actualAddress" [checkValidity]="submitted" label="საცხოვრებელი მისამართი"></app-address>
   </div>
   <div class="p-col-12">
     <div class="p-grid p-jc-end">
       <div class="p-col-4">
-        <button pButton pRipple [disabled]="isDisabled" label="შენახვა" icon="pi pi-check" class="p-button" (click)="onSave()"></button>
+        <button pButton pRipple *ngIf="!isDisabled" label="შენახვა" icon="pi pi-check" class="p-button"
+                (click)="onSave()"></button>
       </div>
     </div>
   </div>

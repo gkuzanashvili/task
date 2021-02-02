@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ValidatorComponent } from './validator.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ValidatorComponent} from './validator.component';
 
 
 @NgModule({
@@ -13,4 +12,5 @@ import { ValidatorComponent } from './validator.component';
     CommonModule
   ]
 })
-export class ValidatorModule { }
+export class ValidatorModule {
+}

@@ -6,6 +6,7 @@ export const INPUT_CONTROL_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => InputComponent),
   multi: true
 };
+
 @Component({
   selector: 'app-input',
   providers: [INPUT_CONTROL_VALUE_ACCESSOR],
@@ -19,31 +20,20 @@ export class InputComponent implements ControlValueAccessor {
   public touched: (event?: any) => void;
 
 
-
   @Input() label: string;
   @Input() icon: string;
   @Input() isDisabled: boolean;
-
   @Input() inputType = 'text';
-
   @Input() checkValidity: boolean;
   @Input() errors: any;
 
 
-  constructor() { }
+  constructor() {
+  }
 
   writeValue(value: any): void {
     this.value = value;
   }
-
-  // isNumberInput() {
-  //   return this.type === 'number';
-  // }
-
-  // public onChange(event) {
-  //   const val = (<HTMLInputElement>event.target).value
-  //   this.changed( (<HTMLInputElement>event.target).value);
-  // }
 
   registerOnChange(fn: any): void {
     this.changed = fn;
@@ -56,6 +46,4 @@ export class InputComponent implements ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
-
-
 }

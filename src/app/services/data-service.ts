@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -9,31 +9,35 @@ import {catchError} from 'rxjs/operators';
 })
 export abstract class DataService {
   private url = environment.jsonServerURL;
-  constructor(private httpClient: HttpClient) { }
 
-  public sendGetRequest(param: string): Promise<any>{
-    return this.httpClient.get( this.url + param, {responseType: 'json'}).pipe(
-      catchError( this.handleError)
+  constructor(private httpClient: HttpClient) {
+  }
+
+  public sendGetRequest(param: string): Promise<any> {
+    return this.httpClient.get(this.url + param, {responseType: 'json'}).pipe(
+      catchError(this.handleError)
     ).toPromise();
   }
-  public sendDeleteRequest(param: string, id: number): Promise<any>{
+
+  public sendDeleteRequest(param: string, id: number): Promise<any> {
     const delUrl = `${this.url + param}/${id}`;
     return this.httpClient.delete(delUrl)
       .pipe(
-        catchError( this.handleError)
+        catchError(this.handleError)
       ).toPromise();
   }
 
   public sendPutRequest(param, data): Promise<any> {
     const url = `${this.url + param}/${data.id}`;
-    return  this.httpClient.put(url, data, {responseType: 'json'} ).pipe(
-      catchError( this.handleError)
+    return this.httpClient.put(url, data, {responseType: 'json'}).pipe(
+      catchError(this.handleError)
     ).toPromise();
   }
+
   public sendPostRequest(param, data): Promise<any> {
     const url = `${this.url + param}`;
-    return  this.httpClient.post(url, data, {responseType: 'json'}).pipe(
-      catchError( this.handleError)
+    return this.httpClient.post(url, data, {responseType: 'json'}).pipe(
+      catchError(this.handleError)
     ).toPromise();
   }
 

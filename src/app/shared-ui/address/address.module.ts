@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AddressComponent } from './address.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AddressComponent} from './address.component';
 import {InputModule} from '../input/input.module';
 import {ReactiveFormsModule} from '@angular/forms';
-
 
 
 @NgModule({
@@ -17,4 +16,5 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-export class AddressModule { }
+export class AddressModule {
+}

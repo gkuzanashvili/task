@@ -6,10 +6,11 @@ import {PrimeNGConfig} from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'task';
+export class AppComponent implements OnInit {
+  title = 'TBC';
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(private primengConfig: PrimeNGConfig) {
+  }
 
   ngOnInit() {
     this.primengConfig.ripple = true;

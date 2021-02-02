@@ -18,7 +18,8 @@ export class AccountViewComponent implements OnInit {
 
   @Output() newAccount = new EventEmitter<AccountModel>();
 
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -26,7 +27,9 @@ export class AccountViewComponent implements OnInit {
   }
 
   initForm(account?) {
-    if (account) { this.account = account; }
+    if (account) {
+      this.account = account;
+    }
     this.submitted = false;
     this.accountForm = new FormGroup({
       accountNumber: new FormControl(this.account.accountNumber, Validators.required),

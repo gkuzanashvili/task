@@ -35,7 +35,6 @@
     </tr>
   </ng-template>
 </p-table>
-
 <p-dialog [(visible)]="newAccountsModal" [style]="{width: '700px'}" header="ანგარიში" [modal]="true"
           styleClass="p-fluid">
   <app-account-view (newAccount)="onSave($event)"></app-account-view>

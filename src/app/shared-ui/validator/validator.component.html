@@ -1,8 +1,11 @@
-
-
 <small class="p-error" *ngIf="checkValidity && errors && errors.required">გთხოვთ შეავსოთ</small>
-<small class="p-error" *ngIf="checkValidity && errors && errors.exactLengthErrorMessage">{{errors.exactLengthErrorMessage}}</small>
-<small class="p-error" *ngIf="checkValidity && errors && errors.phoneNumberErrorMessage">{{errors.phoneNumberErrorMessage}}</small>
-<small class="p-error" *ngIf="checkValidity && errors && errors.geoEnRegexErrorMessage">{{errors.geoEnRegexErrorMessage}}</small>
-<small class="p-error" *ngIf="checkValidity && errors && errors.maxlength">სიმბოლოების რაოდენობა აღემატება დასაშვებს</small>
-<small class="p-error" *ngIf="checkValidity && errors && errors.minlength">სიმბოლოების რაოდენობა დასაშვებზე ნაკლებია</small>
+<small class="p-error"
+       *ngIf="checkValidity && errors && errors.exactLengthErrorMessage">{{errors.exactLengthErrorMessage}}</small>
+<small class="p-error"
+       *ngIf="checkValidity && errors && errors.phoneNumberErrorMessage">{{errors.phoneNumberErrorMessage}}</small>
+<small class="p-error"
+       *ngIf="checkValidity && errors && errors.geoEnRegexErrorMessage">{{errors.geoEnRegexErrorMessage}}</small>
+<small class="p-error" *ngIf="checkValidity && errors && errors.maxlength">სიმბოლოების რაოდენობა აღემატება
+  დასაშვებს</small>
+<small class="p-error" *ngIf="checkValidity && errors && errors.minlength">სიმბოლოების რაოდენობა დასაშვებზე
+  ნაკლებია</small>

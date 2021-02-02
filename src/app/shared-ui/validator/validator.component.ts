@@ -9,7 +9,8 @@ export class ValidatorComponent implements OnInit {
   @Input() checkValidity: boolean;
   @Input() errors: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

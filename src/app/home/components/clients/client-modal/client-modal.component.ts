@@ -12,26 +12,36 @@ import {GeoEnRegexValidator} from '../../../../validators/geo-en-regex-validator
   styleUrls: ['./client-modal.component.css']
 })
 export class ClientModalComponent implements OnInit {
+
+  clientForm: FormGroup;
+
+  legalAddress: FormGroup;
+
+  actualAddress: FormGroup;
+
   client = new ClientModel();
+
   submitted = false;
+
   clientImg: string;
 
-  @Output() newClient = new EventEmitter<ClientModel>();
+  isDisabled = false;
+
 
   public gender = [
     { label: new GenderPipe().transform('F'), value: 'F' },
     { label: new GenderPipe().transform('M'), value: 'M' }
   ];
-  clientForm: FormGroup;
-  legalAddress: FormGroup;
-  actualAddress: FormGroup;
-  isDisabled = false;
+
+  @Output() newClient = new EventEmitter<ClientModel>();
+
   constructor(
     private formBuilder: FormBuilder,
     public phoneNumberValidator: PhoneNumberValidator,
     public numberExactLengthValidator: ExactLengthValidator,
     public geoEnRegexValidator: GeoEnRegexValidator
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -42,21 +52,22 @@ export class ClientModalComponent implements OnInit {
       id: new FormControl(''),
       pin: new FormControl('', [Validators.required, this.numberExactLengthValidator.validate(11)]),
       firstName: new FormControl('',
-          [Validators.required,
-                       this.geoEnRegexValidator.validate(),
-                       Validators.maxLength(50),
-                       Validators.minLength(2)]),
+        [Validators.required,
+          this.geoEnRegexValidator.validate(),
+          Validators.maxLength(50),
+          Validators.minLength(2)]),
       lastName: new FormControl('',
-         [Validators.required,
-                      this.geoEnRegexValidator.validate(),
-                      Validators.maxLength(50),
-                      Validators.minLength(2)]),
-      phoneNumber:  new FormControl('', [Validators.required, this.phoneNumberValidator.validate()]),
+        [Validators.required,
+          this.geoEnRegexValidator.validate(),
+          Validators.maxLength(50),
+          Validators.minLength(2)]),
+      phoneNumber: new FormControl('', [Validators.required, this.phoneNumberValidator.validate()]),
       gender: new FormControl('')
     });
     this.legalAddress = this.initAddressForm();
     this.actualAddress = this.initAddressForm();
   }
+
   initAddressForm(): FormGroup {
     return this.formBuilder.group({
       country: new FormControl('', Validators.required),
@@ -64,7 +75,8 @@ export class ClientModalComponent implements OnInit {
       address: new FormControl('', Validators.required),
     });
   }
-  fillForm(client: ClientModel, isViewMode?: false) {
+
+  fillForm(client: ClientModel, isViewMode?) {
     this.submitted = false;
     this.client = null;
     this.client = {...client};
@@ -72,18 +84,16 @@ export class ClientModalComponent implements OnInit {
     this.fillFormControls(this.client, this.clientForm);
     this.fillFormControls(this.client.legalAddress, this.legalAddress);
     this.fillFormControls(this.client.actualAddress, this.actualAddress);
-    this.disableForm();
+    isViewMode ? this.disableForm() : this.enableForm();
   }
 
   onSave() {
     this.submitted = true;
-    console.log(this.clientForm.get('firstName').errors , 'firstName');
-    console.log(this.clientForm.get('lastName').errors , 'lastName');
     this.client = this.clientForm.value;
     this.client.image = this.clientImg;
     this.client.legalAddress = this.legalAddress.value;
     this.client.actualAddress = this.actualAddress.value;
-    if ( this.isValid()) {
+    if (this.isValid()) {
       this.newClient.emit(this.client);
     }
   }
@@ -99,7 +109,6 @@ export class ClientModalComponent implements OnInit {
       fileReader.readAsDataURL(file);
       fileReader.onload = (e: any) => {
         this.clientImg = e.target.result;
-        console.log(this.clientImg);
       };
     }
   }
@@ -111,11 +120,19 @@ export class ClientModalComponent implements OnInit {
       });
     }
   }
+
   private disableForm() {
     this.clientForm.disable({onlySelf: true, emitEvent: true});
     this.legalAddress.disable({onlySelf: true, emitEvent: true});
     this.actualAddress.disable({onlySelf: true, emitEvent: true});
     this.isDisabled = true;
+  }
+
+  private enableForm() {
+    this.clientForm.enable({onlySelf: true, emitEvent: true});
+    this.legalAddress.enable({onlySelf: true, emitEvent: true});
+    this.actualAddress.enable({onlySelf: true, emitEvent: true});
+    this.isDisabled = false;
   }
 
 }

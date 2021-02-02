@@ -10,7 +10,6 @@ export class ExactLengthValidator {
         return {exactLengthErrorMessage: 'სიმბოლოების რაოდენობა უნდა იყოს:' + length};
       }
       return null;
-
     };
   }
 }

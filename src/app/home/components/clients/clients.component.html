@@ -5,26 +5,31 @@
            currentPageReportTemplate=" სულ: {totalRecords}"
            [showCurrentPageReport]="true"
            [responsive]="true"
+           (sortFunction)="onSort($event)"
+           [customSort]="true"
            [sortField]="sortField"
            [sortOrder]="sortOrder"
            (onPage)="setPage($event)"
            [first]="startRow"
            [rowHover]="true" dataKey="id">
     <ng-template pTemplate="caption">
-            <div class="p-grid p-jc-between">
-              <div class="p-col-2">
-                <h2 class="p-m-0">მომხმარებლები</h2>
-              </div>
-              <div class="p-col-3">
-                <button pButton pRipple icon="pi pi-user-plus" class="p-button p-button-outlined  p-mr-2" (click)="openNew()"></button>
-                <button pButton pRipple icon="pi pi-search" class="p-button p-button-outlined p-button-secondary  p-mr-2" (click)="onSearch()"></button>
-                <span class="p-input-icon-left">
+      <div class="p-grid p-jc-between">
+        <div class="p-col-2">
+          <h2 class="p-m-0">მომხმარებლები</h2>
+        </div>
+        <div class="p-col-3">
+          <button pButton pRipple icon="pi pi-user-plus" class="p-button p-button-outlined  p-mr-2"
+                  (click)="openNew()"></button>
+          <button pButton pRipple icon="pi pi-search" class="p-button p-button-outlined p-button-secondary  p-mr-2"
+                  (click)="onSearch()"></button>
+          <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                    </span>
-              </div>
-            </div>
-      <p-panel header="ძიება"  [formGroup]="clientSearchForm" *ngIf="showSearchPanel">
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                               placeholder="ძიება..."/>
+          </span>
+        </div>
+      </div>
+      <p-panel header="ძიება" [formGroup]="clientSearchForm" *ngIf="showSearchPanel">
         <div class="p-grid">
           <div class="p-col-6">
             <app-input label="სახელი"
@@ -52,50 +57,51 @@
             ></app-input>
           </div>
           <div class="p-col-1">
-            <button pButton pRipple label="ძიება" icon="pi pi-search" class="p-button" (click)="searchResult()"></button>
+            <button pButton pRipple label="ძიება" icon="pi pi-search" class="p-button"
+                    (click)="searchResult()"></button>
           </div>
         </div>
       </p-panel>
-
-
-          </ng-template>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th>ფოტო</th>
-        <th pSortableColumn="firstName">სახელი <p-sortIcon  field="firstName"></p-sortIcon></th>
-        <th pSortableColumn="lastName">გვარი <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="firstName">სახელი <i [class]="getSortIcon('firstName')"></i></th>
+        <th pSortableColumn="lastName">გვარი <i [class]="getSortIcon('lastName')"></i></th>
         <th>სქესი</th>
-        <th pSortableColumn="pin">პირადი ნომერი <p-sortIcon field="pin"></p-sortIcon></th>
+        <th pSortableColumn="pin">პირადი ნომერი <i [class]="getSortIcon('pin')"></i></th>
         <th>ტელეფონი</th>
-        <th [style]="{'width':'350px'}" ></th>
+        <th [style]="{'width':'350px'}"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>
       <tr>
-        <td><img src="{{client.image}}" width="50" height="50" class="p-shadow-4" /></td>
+        <td><img src="{{client.image}}" width="50" height="50" class="p-shadow-4"/></td>
         <td>{{client.firstName}}</td>
         <td>{{client.lastName }}</td>
         <td>{{client.gender | genderPipe}}</td>
         <td>{{client.pin}}</td>
         <td>{{client.phoneNumber}}</td>
-        <td  [style]="{'width':'350px'}" >
-          <button pButton pRipple label="ანგარიშები" class="p-button-outlined p-mr-2" (click)="showAccounts(client)"></button>
-          <button pButton pRipple icon="pi pi-eye" class="p-button-outlined p-button-secondary p-mr-2" (click)="editClient(client)"></button>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-success p-mr-2" (click)="editClient(client)"></button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger p-mr-2" (click)="deleteClient(client)"></button>
+        <td [style]="{'width':'350px'}">
+          <button pButton pRipple label="ანგარიშები" class="p-button-outlined p-mr-2"
+                  (click)="showAccounts(client)"></button>
+          <button pButton pRipple icon="pi pi-eye" class="p-button-outlined p-button-secondary p-mr-2"
+                  (click)="editClient(client, true)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-success p-mr-2"
+                  (click)="editClient(client)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger p-mr-2"
+                  (click)="deleteClient(client)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
-
-<p-dialog [(visible)]="clientModal" [style]="{width: '700px'}" header="მომხმარებელი" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="clientModal" [style]="{width: '700px'}" header="მომხმარებელი" [modal]="true"
+          styleClass="p-fluid">
   <app-client-modal (newClient)="saveClient($event)"></app-client-modal>
 </p-dialog>
-
 <div *ngIf="showAccountsTable" class="card">
   <app-accounts [client]="client"></app-accounts>
 </div>
-
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 

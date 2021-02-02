@@ -50,33 +50,29 @@ export class ClientsComponent implements OnInit{
   ngOnInit(): void {
     this.clients = [];
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params, 'პარამს');
       this.page = params.page ? params.page : 1;
       this.startRow = (this.page - 1) * 5;
       this.sortOrder = params.sortOrder;
       this.sortField = params.sortField;
     });
-    this.activatedRoute.data.subscribe( data => {
+    this.activatedRoute.data.subscribe(data => {
       this.clients = data.clients;
     });
-    // this.setRoutParam();
   }
 
   setPage(event) {
     this.page = event.first / event.rows + 1;
     this.setRoutParam();
-    console.log(event, this.page);
-
   }
+
   setRoutParam() {
-    const params = this.sortField ? {page: this.page, sortField: this.sortField, sortOrder: this.sortOrder } :  {page: this.page };
-    this.router.navigate([], { queryParams: params}).then();
+    const params = this.sortField ? {page: this.page, sortField: this.sortField, sortOrder: this.sortOrder} : {page: this.page};
+    this.router.navigate([], {queryParams: params}).then();
   }
 
   getClients() {
     this.clientService.getClients().then(clients => {
       this.clients = clients;
-      console.log(this.clients, 'clinetsjd');
     }).catch(err => {
       this.messageService.add({severity: 'error', summary: 'შეცდომა', detail: err, life: 3000});
     });
@@ -138,8 +134,6 @@ export class ClientsComponent implements OnInit{
   }
 
   onSort(event) {
-    //console.log(event, 'event');
-
     if (event.data.length) {
       this.page = 1;
       this.sortField = event.field;
@@ -148,19 +142,24 @@ export class ClientsComponent implements OnInit{
       event.data = this.sort(event.data, event.field, event.order);
     }
   }
-  go(event) {
-    console.log(event, 'gogogo');
+
+  getSortIcon(sortField) {
+    if (this.sortField === sortField) {
+      return this.sortOrder > 0 ? 'pi pi-sort-amount-up' : 'pi pi-sort-amount-down';
+    } else {
+      return 'pi pi-sort-alt';
+    }
   }
+
   showAccounts(client: ClientModel) {
-   // console.log(client.accounts, 'acct');
     this.client = {...client};
     this.showAccountsTable = !this.showAccountsTable;
     this.getClients();
   }
 
-  editClient(client: ClientModel) {
+  editClient(client: ClientModel, isViewMode?) {
     this.client = {...client};
-    this.clientModalComponent.fillForm(this.client);
+    this.clientModalComponent.fillForm(this.client, isViewMode);
     this.clientModal = true;
   }
 
@@ -188,7 +187,6 @@ export class ClientsComponent implements OnInit{
     this.client = client;
     if (this.client.id) {
       this.clientService.updateClient(this.client).then((res) => {
-        console.log(res, 'update');
         this.getClients();
         this.messageService.add({severity: 'success', summary: 'წარმატებული', detail: 'მონაცემები განახლდა', life: 3000});
       }).catch(err => {
@@ -196,7 +194,6 @@ export class ClientsComponent implements OnInit{
       });
 
     } else {
-      console.log('save', this.client);
       this.client.id = this.createId();
       this.clientService.saveClient(this.client).then(() => {
         this.getClients();
@@ -213,6 +210,7 @@ export class ClientsComponent implements OnInit{
     const ids = this.clients.map((item) => item.id);
     return Math.max(...ids) + 1;
   }
+
   private sort(data, field, order) {
     return  data.sort((data1, data2) => {
       const value1 = data1[field];

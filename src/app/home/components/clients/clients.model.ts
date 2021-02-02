@@ -20,8 +20,3 @@ export class AddressModel {
   city: string;
   address: string;
 }
-
-// export class Gender {
-//   id: number;
-//   value: string;
-// }
